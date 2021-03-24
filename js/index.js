@@ -35,7 +35,7 @@ window.addEventListener('load', function () {
                 // 是 ol.children[i] 所有的孩子 不是 li[i];
                 ol.children[i].className = '';
             }
-            this.className = 'current';
+            this.className = 'current1';
             var index = this.getAttribute('index');
             // 当我们点击了某个小li,就要把这个li的索引号给num
             num = index;
@@ -47,7 +47,7 @@ window.addEventListener('load', function () {
         })
     }
     // 第一个li添加类名 current
-    ol.children[0].className = 'current';
+    ol.children[0].className = 'current1';
     // 克隆第一张图片添加到最后一个li中
     var clone = ul.children[0].cloneNode(true);
     ul.appendChild(clone);
@@ -113,9 +113,46 @@ window.addEventListener('load', function () {
         for (var i = 0; i < ol.children.length; i++) {
             ol.children[i].className = '';
         }
-        ol.children[circle].className = 'current';
+        ol.children[circle].className = 'current1';
     }
     var timer = window.setInterval(function () {
         arrow_r.click();
     }, 2000)
 })
+// jquery
+$(function() {
+    var boxtop = $(".recom-hd").offset().top;
+    var flag = true;
+    toggleTool();
+
+    function toggleTool() {
+        if($(document).scrollTop() >= boxtop) {
+            $(".flexdtool").fadeIn();
+        } else {
+            $(".flexdtool").fadeOut();
+        };
+    }
+
+    $(window).scroll(function() {
+        toggleTool();
+        if(flag) {
+            $(".floor .w").each(function(i,ele) {
+                if($(document).scrollTop() >= $(ele).offset().top) {
+                    $(".flexdtool li").eq(i).addClass("current").siblings().removeClass();
+                }
+            })
+        }
+    });
+    $(".flexdtool li").click(function() {
+        flag = false;
+        var current = $(".floor .w").eq($(this).index()).offset().top;
+        $("body,html").stop().animate({
+            scrollTop:current
+        },function() {
+            flag = true;
+        });
+        $(this).addClass("current").siblings().removeClass();
+    })
+    
+})
+

@@ -53,10 +53,6 @@
     border-radius: 50%;
     cursor: pointer;
 }
-.current {
-    background-color: #fff;
-    box-shadow:
-}
 
 .newsflash {
     width: 250px;
@@ -294,6 +290,7 @@
     margin-left: -676px;
     width: 66px;
     background-color: #fff;
+    display: none;
 }
 .flexdtool li {
     height: 32px;
@@ -303,7 +300,13 @@
     border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
-.flexdtool .current {
+.current1 {
+    background-color: #fff;
+}
+.current {
     background-color: #c81623;
+}
+.current a {
     color: #fff;
 }
+
